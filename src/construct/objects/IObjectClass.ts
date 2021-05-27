@@ -1,3 +1,4 @@
+import { IInstance } from "./IInstance";
 import { IWordInstance } from "./IWordInstance";
 
 interface IObjectClass {
@@ -9,6 +10,16 @@ interface IObjectClass {
    * @param createHierarchy - Whether to create or not a Hierarchy
    */
   createInstance(layerNameOrIndex: number | string, x:number, y:number, createHierarchy:boolean):IObjectClass
+
+  /**
+   * Return an array of all instances of this object class.
+   */
+  getAllInstances():IInstance[]
+  
+  /**
+   * Return the first instance in the array returned by getAllInstances(), or null if no instances exist.
+   */
+  getFirstInstance():IInstance
 }
 
 export { IObjectClass }
