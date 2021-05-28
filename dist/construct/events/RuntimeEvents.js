@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.RuntimeEvents = void 0;
-var RuntimeEvents;
+export var RuntimeEvents;
 (function (RuntimeEvents) {
     /**
      * Fires every tick, just before running the layout's event sheet.
@@ -13,4 +10,4 @@ var RuntimeEvents;
      */
     RuntimeEvents["beforeprojectstart"] = "beforeprojectstart";
     RuntimeEvents["afterprojectstart"] = "afterprojectstart";
-})(RuntimeEvents = exports.RuntimeEvents || (exports.RuntimeEvents = {}));
+})(RuntimeEvents || (RuntimeEvents = {}));

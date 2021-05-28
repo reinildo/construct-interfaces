@@ -3,7 +3,7 @@ import { ISpriteInstance } from "./construct/plugins/ISpriteInstance";
 import { IObjectClass } from "./construct/objects/IObjectClass";
 import { ITextInstance } from "./construct/plugins/ITextInstance";
 
-const MAX_VALUE = 359
+const MAX_VALUE = 349
 const CONTAINER_START_Y = 380
 const INCREMENT_POINTS = 10
 let pontuacao = 0
@@ -16,6 +16,7 @@ let num_sorteado:number
 let label_centenas:ITextInstance
 let label_dezenas:ITextInstance
 let label_unidades:ITextInstance
+let arr_sounds:string[]
 
 
 function init(runtime:IRuntime){
@@ -41,7 +42,8 @@ function reset_fase(runtime:IRuntime){
 
 function cria_blocos(runtime:IRuntime){
   let total_width = 0;
-  let gap = 20
+  let gap = 16
+  let extra_gap = 20
   blocos_container = (runtime.objects.blocos_container as IObjectClass).createInstance('blocos_container', total_width,CONTAINER_START_Y, false) as ISpriteInstance
 
   blocos_container.opacity = 0
@@ -57,18 +59,22 @@ function cria_blocos(runtime:IRuntime){
   }
 
   //create dezenas bloco
-  for(let i=0; i<dezenas; i++){
-    let dezenas_bloco = (runtime.objects.blocos_dezenas as ISpriteInstance).createInstance('blocos_container', total_width, CONTAINER_START_Y, false) as ISpriteInstance
-
-    dezenas_bloco.opacity = 0;
-
-    total_width += dezenas_bloco.imageWidth + gap
-    blocos_container.addChild(dezenas_bloco, {transformX:true, transformY:true, destroyWithParent:true})
-
+  if(dezenas){
+    total_width+= extra_gap
+    for(let i=0; i<dezenas; i++){
+      let dezenas_bloco = (runtime.objects.blocos_dezenas as ISpriteInstance).createInstance('blocos_container', total_width, CONTAINER_START_Y, false) as ISpriteInstance
+  
+      dezenas_bloco.opacity = 0;
+  
+      total_width += dezenas_bloco.imageWidth + gap
+      blocos_container.addChild(dezenas_bloco, {transformX:true, transformY:true, destroyWithParent:true})
+  
+    }
   }
 
   //create unidades bloco
   if(unidades){
+    total_width+= extra_gap
     let unidades_bloco = (runtime.objects.blocos_unidades as ISpriteInstance).createInstance('blocos_container', total_width, CONTAINER_START_Y, false) as ISpriteInstance
 
     unidades_bloco.opacity = 0;
@@ -90,22 +96,23 @@ function cria_blocos(runtime:IRuntime){
 }
 
 function sorteia_numero(){
-  num_sorteado = Math.floor(Math.random() * MAX_VALUE + 1)
-  console.log(`numero sorteado: ${num_sorteado}`)
+  let rnd = Math.floor(Math.random() * MAX_VALUE + 1)
+  //avoid same number to repeat next fase
+  while(rnd === num_sorteado){
+    rnd = Math.floor(Math.random() * MAX_VALUE + 1)
+  }
+  num_sorteado = rnd
   
   //centenas
   let resto_dezenas = num_sorteado % 100
   centenas = (num_sorteado - resto_dezenas) / 100
-  console.log(`centenas: ${centenas}`)
 
   //dezenas
   let resto_unidades = resto_dezenas % 10
   dezenas = (resto_dezenas - resto_unidades) / 10
-  console.log(`dezenas: ${dezenas}`)
 
   //unidades
   unidades = resto_unidades
-  console.log(`unidades: ${unidades}`)
 }
 
 function increment_decrement(action:string, type:string, runtime:IRuntime):void{
@@ -128,12 +135,21 @@ function checa_resposta(runtime:IRuntime){
 
   if(valor_centenas === centenas && valor_dezenas === dezenas && valor_unidades === unidades){
     pontuacao += INCREMENT_POINTS
+    arr_sounds = []
+    if(centenas) arr_sounds.push(`${centenas}_centena`)
+    if(dezenas) arr_sounds.push(`${dezenas}_dezena`)
+    if(unidades) arr_sounds.push(`${unidades}_unidade`)
+
     runtime.callFunction('show_acerto')
     update_placar()
 
-  }else{
-    console.log('ERRO')
   }
+}
+
+function play_audio_numero(runtime:IRuntime){
+  
+  const audio = arr_sounds.shift()
+  if(audio) runtime.callFunction('play_audio_numero', audio)
 }
 
 function update_placar(){
