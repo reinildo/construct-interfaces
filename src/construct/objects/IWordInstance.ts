@@ -48,6 +48,11 @@ interface IWordInstance extends IInstance{
    * destroyWithParent: automatically destroy the child if this instance is destroyed
    */
   addChild(wi:IWordInstance, opts:IAddChildOptions):void
+
+  /**
+   * An array with 3 elements specifying the red, green and blue color filter of the instance, with color values as floats in the 0-1 range.
+   */
+   colorRgb:number[]
 }
 
 export {IWordInstance}
