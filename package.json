@@ -1,17 +1,12 @@
 {
   "name": "construct-interfaces",
   "version": "1.0.0",
-  "main": "src/index.ts",
   "description": "Construct 3 typescript interfaces for ease development on code editors like VSCode",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reinildo/construct-interfaces.git"
   },
-  "license": "MIT",
-  "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only ./src/main.ts",
-    "build": "tsc"
-  },
+  "license": "ISC",
   "devDependencies": {
     "typescript": "^4.3.2"
   }
