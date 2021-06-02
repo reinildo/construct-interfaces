@@ -1,6 +1,6 @@
 {
   "name": "c3-interfaces",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Construct 3 typescript interfaces for ease development on code editors like VSCode",
   "repository": {
     "type": "git",
@@ -9,9 +9,11 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc"
+    "build": "rm -rf ./lib && tsc"
   },
-  "files": ["lib/**/*"],
+  "files": [
+    "lib/**/*"
+  ],
   "license": "ISC",
   "devDependencies": {
     "typescript": "^4.3.2"
