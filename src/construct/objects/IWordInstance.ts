@@ -1,5 +1,4 @@
 import { IInstance } from '../objects/IInstance'
-import { IObjectClass } from './IObjectClass'
 interface IAddChildOptions {
   /**
    * move the child with this instance's X position
@@ -52,7 +51,14 @@ interface IWordInstance extends IInstance{
   /**
    * An array with 3 elements specifying the red, green and blue color filter of the instance, with color values as floats in the 0-1 range.
    */
-   colorRgb:number[]
+  colorRgb:number[]
+
+  /**
+   * Move the instance to the top or the bottom of its current layer in the Z order.
+   */
+  moveToTop():void
+  moveToBottom():void
+
 }
 
 export {IWordInstance}
