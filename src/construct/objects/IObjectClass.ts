@@ -25,6 +25,18 @@ interface IObjectClass {
    * Return the first instance in the array returned by getAllInstances(), or null if no instances exist.
    */
   getFirstInstance():IInstance
+
+  /**
+   * Return an array of instances that have been picked by the event's conditions. This is only useful with scripts in event sheets.
+   */
+  getPickedInstances():IInstance[]
+
+  /**
+   * Return the first instance that has been picked by the event's conditions, or null if none. This is only useful with scripts in event sheets.
+   */
+
+  getFirstPickedInstance():IInstance | null
+
 }
 
 export { IObjectClass }
