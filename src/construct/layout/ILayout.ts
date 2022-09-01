@@ -1,3 +1,5 @@
+import { ILayer } from "./ILayer";
+
 interface ILayout {
   /**
    * A read-only string of the layout name.
@@ -12,7 +14,7 @@ interface ILayout {
   /**
    * Get an ILayer interface for a layer on the layout, by a case-insensitive string of its name or its zero-based index.
    */
-  getLayer:ILayer
+   getLayer(layerNameOrIndex:string | number): ILayer;
 
   /**
    * Return an array of ILayer interfaces representing all the layers on the layout.
@@ -32,3 +34,5 @@ interface ILayout {
    */
   scrollTo(x:number, y:number):void
 }
+
+export { ILayout }

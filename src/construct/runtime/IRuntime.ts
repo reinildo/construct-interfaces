@@ -1,4 +1,6 @@
 import { RuntimeEvents } from "../events/RuntimeEvents";
+import { ILayout } from "../layout/ILayout";
+import { IAssetManager } from "../other-interfaces/IAssetManager";
 import { ITouchObjectType } from "../plugins/ITouchObjectType";
 
 interface IRuntime {
@@ -15,7 +17,7 @@ interface IRuntime {
    * @param name - The function name to call
    * @param params 
    */
-  callFunction(name:string, ...params:any):void
+  callFunction(name:string, ...params:any):any
 
 
   /**
@@ -39,7 +41,28 @@ interface IRuntime {
    */
   globalVars: {[key: string]: any}
 
+  /**
+   * A shorthand reference to the Touch script interface. This is only set if the Touch plugin is added to the project.
+   */
   touch: ITouchObjectType
+
+  /**
+   * 
+   * @param layoutNameOrIndex
+   * End the current layout and switch to a new layout given by a case-insensitive string of its name, or its zero-based index in the project (which is the order layouts appear in the Project Bar with all folders expanded). Note the layout switch does not take place until the end of the current tick.
+   */
+  goToLayout(layoutNameOrIndex:string|number):void
+
+  /**
+   * An IAssetManager interface providing access to project assets like sound and music files or other project files, as well as audio decoding utilities.
+   */
+  assets: IAssetManager
+
+  /**
+   * An ILayout interface representing the current layout.
+   */
+  layout: ILayout
+
 }
 
 

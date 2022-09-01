@@ -1,6 +1,6 @@
 {
   "name": "c3-interfaces",
-  "version": "1.0.6",
+  "version": "1.0.13",
   "description": "Construct 3 typescript interfaces for ease development on code editors like VSCode",
   "repository": {
     "type": "git",

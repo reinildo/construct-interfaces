@@ -18,6 +18,16 @@ interface IInstance extends IObjectClass {
   instVars: {[key:string]:string | number}
 
   /**
+   * If the object has any behaviors, they can be accessed by named properties under this property. For example if an object has a behavior named Bullet, it can be accessed using instance.behaviors.Bullet. Each behavior has its own properties and methods, which can be found in the Behavior interfaces reference section. Note if the object has no behaviors, the instance won't have a behaviors property at all.
+   */
+  behaviors?:any
+
+  /**
+   * The unique ID of this instance, as a number. Note instances can be looked up by their UID using the runtime getInstanceByUid() method.
+   */
+  uid:number
+  
+  /**
    * Destroy the instance, removing it and releasing any memory associated with it.
    */
   destroy():void

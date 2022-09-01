@@ -1,3 +1,5 @@
+import { ILayout } from "./ILayout";
+
 interface ILayer {
   /**
    * A read-only string of the layer name.
@@ -38,3 +40,5 @@ interface ILayer {
   cssPxToLayer(clientX:number, clientY:number, z:number):void
   layerToCssPx(layerX:number, layerY:number, z:number):void
 }
+
+export { ILayer }
