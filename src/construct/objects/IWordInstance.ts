@@ -1,3 +1,5 @@
+import { ILayer } from '../layout/ILayer'
+import { ILayout } from '../layout/ILayout'
 import { IInstance } from '../objects/IInstance'
 interface IAddChildOptions {
   /**
@@ -38,6 +40,16 @@ interface IAddChildOptions {
 }
 
 interface IWordInstance extends IInstance{
+  /**
+   * An ILayout interface representing the layout the instance is on.
+   */
+  layout:ILayout
+
+  /**
+   * An ILayer interface representing the layer the instance is on.
+   */  
+  layer:ILayer
+
   /**
    * The position of this instance, in layout co-ordinates.
    */

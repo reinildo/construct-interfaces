@@ -1,3 +1,5 @@
+import { ISpriteInstance } from '../plugins/ISpriteInstance'
+import { IAnimation } from './IAnimation'
 import { IObjectClass } from './IObjectClass'
 
 interface InstanceEvents {
@@ -15,6 +17,11 @@ interface IInstance extends IObjectClass {
   addEventListener(type:string, callback:Function):void
   removeEventListener(type:string, callback:Function):void
 
+  /**
+   * A reference to a IAnimation script interface representing the current animation, which can be used to access additional details such as the frames in the animation.
+   */
+  animation: IAnimation
+
   instVars: {[key:string]:string | number}
 
   /**
@@ -31,6 +38,17 @@ interface IInstance extends IObjectClass {
    * Destroy the instance, removing it and releasing any memory associated with it.
    */
   destroy():void
+
+  /**
+   * Return an array of IInstance (or derivatives) representing other instances in the same container as this instance. This excludes the instance the method is called on.
+   */
+  getOtherContainerInstances(): IInstance[]
+
+  /**
+   * Iterates over IInstance (or derivatives) representing other instances in the same container as this instance. This excludes the instance the method is called on.
+   */
+  otherContainerInstances(): IterableIterator<IInstance>
+
 
   /**
    * The IObjectClass interface for this instance's object type.

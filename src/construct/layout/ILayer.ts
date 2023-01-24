@@ -26,6 +26,31 @@ interface ILayer {
    */
   opacity:number
   
+  /** 
+   * Iterates the layer's own sub-layers in increasing Z order. This does not iterate any sub-layers at lower levels in the hierarchy.
+   */
+  subLayers():Generator
+
+  /**
+   * Iterates the layer's sub-layers and further sub-layers beneath those recursively, in increasing Z order.
+   */
+  allSubLayers():Generator
+
+  /**
+   * A reference to the layer's parent ILayer if it is a sub-layer, else null if it is a top-level layer.
+   */
+  parentLayer:ILayer
+
+  /**
+   * Iterates all the layer's parent layers, moving up towards the top of the hierarchy.
+   */
+  parentLayers():Generator
+
+  /**
+   * A boolean indicating if the layer is interactive, allowing its content to respond to mouse and touch input.
+   */
+  isInteractive:boolean
+
   /**
    * Return a DOMRect representing the bounds of the viewport on this layer in layout co-ordinates.
    */
