@@ -115,6 +115,17 @@ interface IWordInstance extends IInstance{
   moveToBottom():void
 
   /**
+   * 
+   * @param layer Move the instance to the top of a different layer given by its ILayer.
+   */
+  moveToLayer(layer:ILayer):void
+
+  /**
+   * Move the instance adjacent to other (another IWorldInstance) in the Z order. If necessary this also moves the instance to the same layer as other. If isAfter is true, it moves it just above the given instance, else just below.
+   */
+  moveAdjacentToInstance(other:IWordInstance, isAfter:boolean):void
+
+  /**
    * Test if this instance overlaps another world instance given by an IWorldInstance, returning true if they overlap, else false. This uses the object's collision polygons if any. If either instance has collisions disabled, this will always return false.
    * @param wi the object to test
    */
