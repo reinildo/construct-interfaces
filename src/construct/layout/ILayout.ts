@@ -33,6 +33,11 @@ interface ILayout {
    * @param y - y position to scroll to
    */
   scrollTo(x:number, y:number):void
+
+  /**
+   * Set or get the layout scale, with 1 being the default scale, 2 being 2x scale, etc. This scales all the layers in the layout, taking in to account their scale rate property.
+   */
+  scale: number
 }
 
 export { ILayout }

@@ -64,6 +64,11 @@ interface ILayer {
    */
   cssPxToLayer(clientX:number, clientY:number, z:number):void
   layerToCssPx(layerX:number, layerY:number, z:number):void
+
+  /**
+   * Set or get the background color of a layer as an array with 3 elements specifying the red, green and blue components with values in the 0-1 range. Note this is ignored if the layer is transparent.
+   */
+  backgroundColor : void | number[]
 }
 
 export { ILayer }
